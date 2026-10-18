@@ -1,0 +1,6 @@
+*.o
+/src/*.o
+/src/slm
+.DS_Store
+/slm
+/src/.DS_Store
