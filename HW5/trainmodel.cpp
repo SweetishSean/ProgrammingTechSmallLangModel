@@ -7,24 +7,28 @@ using namespace std;
 Trainmodel::Trainmodel(int k_init,double alpha_init){
 	k=k_init;
 	alpha = alpha_init;
+	most_common = "";
+	highest_count=0;
 }
 
 
-
+// I specifically made this program so I could train it on mutiple files if I want to.
 void Trainmodel::readfile(string filename){
 	ifstream file(filename);
 	string window="";
 	char next_char;
 	if(!file) {
-		cout << "File did not open";
+		cerr << "File did not open";
 		exit(1);
 	}
+	// get the first k gram and make sure the file is larger then k
 	for(int i=0;i<k;i++){
 		file.get(next_char);
 		if(next_char==NULL){
 			cerr << "File is smaller then k" << endl;
 			exit(1);
 		}
+		//check if its a new char, if it is add it to the alphabet
 		int new_letter=1;
 		for(auto letter : alphabet){
 			if(next_char==letter)
@@ -33,10 +37,9 @@ void Trainmodel::readfile(string filename){
 		if(new_letter){
 			alphabet.push_back(next_char);
 		}
-		
-		
 		window=window+next_char;
 	}
+
 	while(file.get(next_char)) {
 		distribution[window][next_char]+=1;
 		window=window.substr(1,k)+next_char;
@@ -58,10 +61,10 @@ void Trainmodel::readfile(string filename){
 map<string,map<char,double> > Trainmodel::dataout(){
 	map<string,map<char,double> > frequency_map;
 	
-	for(const auto [word,counts] : distribution){
+	for(const auto &[word,counts] : distribution){
 			int total_occ=0;
-			double freq, num, dem;
-			for(const auto [next_char,occ] : counts){
+			double num, dem;
+			for(const auto &[next_char,occ] : counts){
 				total_occ+=occ;	
 			}
 			for(const auto next_char : alphabet){
@@ -69,7 +72,10 @@ map<string,map<char,double> > Trainmodel::dataout(){
 				dem=static_cast<double>(total_occ)+alpha*alphabet.size();
 				frequency_map[word][next_char]=num / dem;
 			}
+			if(total_occ>highest_count)
+				most_common = word;
 	}
+
 
 	return frequency_map;
 }
@@ -77,5 +83,8 @@ map<string,map<char,double> > Trainmodel::dataout(){
 std::vector<char> Trainmodel::alphabet_out(){
 	return alphabet;
 }
-
+// Needs to be called after dataout()
+std::string Trainmodel::highestfreqword(){
+	return most_common;
+}
 

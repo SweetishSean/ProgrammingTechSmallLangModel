@@ -16,12 +16,15 @@ class Trainmodel
 		int size_of_alphabet;
 		std::vector<char> alphabet;
 		double alpha;
+		int highest_count;
+		std::string most_common;
 	public:
 		Trainmodel() {};
 		Trainmodel(int k_init,double alpha_init);
 		void readfile(std::string filename);
 		std::map<std::string, std::map<char,double> >   dataout();
 		std::vector<char> alphabet_out();
+		std::string highestfreqword();
 		
 };
 

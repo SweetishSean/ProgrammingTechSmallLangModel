@@ -18,12 +18,13 @@ class Generatemodel
 		std::uniform_real_distribution<double> distr;
 		std::uniform_int_distribution<> dis_int; 
 		
+		bool is_alpha_zero;
 		int k;	
 		int size_of_alphabet;
 		std::vector<char> alphabet;
 	public:
 		Generatemodel() {};
-		Generatemodel(int k_init,std::map<std::string, std::map<char,double> > init_freq,std::vector<char> init_alphabet,int size_alpha);
+		Generatemodel(int k_init,std::map<std::string, std::map<char,double> > init_freq,std::vector<char> init_alphabet,int size_alpha,double alpha);
 		char generatenext(std::string word);
 		void generatetext(std::string initial_word,int length);
 		
