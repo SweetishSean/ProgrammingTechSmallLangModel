@@ -18,15 +18,13 @@ void Trainmodel::readfile(string filename){
 	string window="";
 	char next_char;
 	if(!file) {
-		cerr << "File did not open";
-		exit(1);
+		throw runtime_error("File did not open.");
 	}
 	// get the first k gram and make sure the file is larger then k
 	for(int i=0;i<k;i++){
-		file.get(next_char);
-		if(next_char==NULL){
-			cerr << "File is smaller then k" << endl;
-			exit(1);
+		
+		if(!file.get(next_char)){
+			throw runtime_error("File is smaller then k characters.");
 		}
 		//check if its a new char, if it is add it to the alphabet
 		int new_letter=1;
@@ -39,6 +37,10 @@ void Trainmodel::readfile(string filename){
 		}
 		window=window+next_char;
 	}
+
+	if(file.peek() == char_traits<char>::eof() ){
+			throw runtime_error("File has only k characters.");
+		}
 
 	while(file.get(next_char)) {
 		distribution[window][next_char]+=1;

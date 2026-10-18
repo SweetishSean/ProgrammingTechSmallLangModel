@@ -46,15 +46,14 @@ char Generatemodel::generatenext(std::string word){
 
 void Generatemodel::generatetext(string initial_word,int length){
 	string window= initial_word;
-	cout << "Generating Text: " << endl;
+
 	char next_char;
 	for(int i=0;i<length;i++){
 		next_char = generatenext(window);
 		cout << next_char;
 		window = window.substr(1,k)+next_char;
 	}
-	
-	//cout<<"Generating text: " <<initial_word << generatenext(initial_word) << endl;
+
 
 
 }

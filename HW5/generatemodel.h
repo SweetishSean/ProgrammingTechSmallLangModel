@@ -8,6 +8,7 @@
 #include <cmath>
 #include <map>
 #include <random>
+#include <stdexcept>
 
 class Generatemodel
 {

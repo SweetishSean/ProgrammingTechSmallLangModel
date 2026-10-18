@@ -7,6 +7,7 @@
 #include <vector>
 #include <cmath>
 #include <map>
+#include <stdexcept>
 
 class Trainmodel
 {
