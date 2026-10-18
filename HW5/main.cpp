@@ -4,10 +4,10 @@
 
 
 #include "trainmodel.h"
-#include "trainmodel.cpp"
+//#include "trainmodel.cpp"
 
 #include "generatemodel.h"
-#include "generatemodel.cpp"
+//#include "generatemodel.cpp"
 
 
 using namespace std;
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]){
 	
 	
 	
-	string input_text= "story.txt";
+	string input_text= "a_modest_proposal.txt";
 	int k = 5;
 	double alpha = .1;
 	Trainmodel m1(k,alpha);
@@ -56,19 +56,21 @@ int main(int argc, char* argv[]){
 	for(const auto [key,value] : test_map)
 		cout<<'[' << key << "] " << value<< endl;
 	*/
-	
+	/*
 	for(const auto [key,value] : mapout){
 		cout<<'[' << key << "] " << endl;
 		for(const auto [nex_char,occr] : value){
 		cout<< nex_char << " " << occr << endl;
 		}
 	}
-	
+	*/
 
 
 	// Generate part below:
-	Generatemodel gen1(k,mapout);
+	vector<char> alphabet=m1.alphabet_out();
+	Generatemodel gen1(k,mapout,alphabet,alphabet.size());
 
+	gen1.generatetext("hello",100);
 
 
 

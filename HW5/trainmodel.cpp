@@ -19,7 +19,7 @@ void Trainmodel::readfile(string filename){
 		cout << "File did not open";
 		exit(1);
 	}
-	for(int i;i<k;i++){
+	for(int i=0;i<k;i++){
 		file.get(next_char);
 		if(next_char==NULL){
 			cerr << "File is smaller then k" << endl;
@@ -71,11 +71,11 @@ map<string,map<char,double> > Trainmodel::dataout(){
 			}
 	}
 
-
-
 	return frequency_map;
 }
 
-
+std::vector<char> Trainmodel::alphabet_out(){
+	return alphabet;
+}
 
 

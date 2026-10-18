@@ -21,6 +21,7 @@ class Trainmodel
 		Trainmodel(int k_init,double alpha_init);
 		void readfile(std::string filename);
 		std::map<std::string, std::map<char,double> >   dataout();
+		std::vector<char> alphabet_out();
 		
 };
 
