@@ -9,7 +9,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra
 TARGET = slm
 
 # Object files needed to build the executable
-OBJECTS = main.o trainmodel.o generatemodel.o
+OBJECTS = src/main.o src/trainmodel.o src/generatemodel.o
 
 
 # Default target: running "make" builds the program
@@ -22,18 +22,18 @@ $(TARGET): $(OBJECTS)
 
 
 # Compile main.cpp; rebuild if either header it uses changes
-main.o: main.cpp trainmodel.h generatemodel.h
-	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
+src/main.o: src/main.cpp src/trainmodel.h src/generatemodel.h
+	$(CXX) $(CXXFLAGS) -c src/main.cpp -o src/main.o
 
 
-# Compile c1.cpp; rebuild if its header changes
-c1.o: trainmodel.cpp trainmodel.h
-	$(CXX) $(CXXFLAGS) -c trainmodel.cpp -o trainmodel.o
+# Compile trainmodel.cpp; rebuild if its header changes
+src/trainmodel.o: src/trainmodel.cpp src/trainmodel.h
+	$(CXX) $(CXXFLAGS) -c src/trainmodel.cpp -o src/trainmodel.o
 
 
-# Compile c2.cpp; rebuild if its header changes
-c2.o: generatemodel.cpp generatemodel.h
-	$(CXX) $(CXXFLAGS) -c generatemodel.cpp -o generatemodel.o
+# Compile generatemodel.cpp; rebuild if its header changes
+src/generatemodel.o: src/generatemodel.cpp src/generatemodel.h
+	$(CXX) $(CXXFLAGS) -c src/generatemodel.cpp -o src/generatemodel.o
 
 
 # Remove generated object files and the executable

@@ -83,6 +83,5 @@ int main(int argc, char* argv[]){
 	gen1.generatetext(starting_words,lengthgen);
 
 
-
 	return 0;
 }

@@ -14,7 +14,6 @@ class Trainmodel
 	private:
 		std::map<std::string, std::map<char,int> > distribution;
 		int k;	
-		int size_of_alphabet;
 		std::vector<char> alphabet;
 		double alpha;
 		int highest_count;
